@@ -1,0 +1,15 @@
+package mini_coffee;
+
+public class Mainapp {
+
+	public static void main(String[] args) throws Exception {
+		Menujoin mjoin = new Menujoin();
+		mjoin.printAll();
+		mjoin.join();
+		mjoin.login();
+		mjoin.printAll();
+		System.out.print(mjoin.temp);
+		
+	}
+
+}

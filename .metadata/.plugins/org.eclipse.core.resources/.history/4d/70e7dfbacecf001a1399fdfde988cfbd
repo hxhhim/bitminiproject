@@ -1,0 +1,21 @@
+package mini_coffee;
+
+import java.util.Scanner;
+
+public class Menujoin {
+	
+	public void join1() {
+	
+	Scanner sc = new Scanner(System.in);
+	Member member = new Member();
+	
+	
+	System.out.println("회원가입메뉴입니다.");
+	System.out.println("이름: ");
+	String name = sc.nextLine();
+	System.out.println("전화번호: ");
+	String phoneNumber = sc.nextLine();
+		
+	}
+	
+}

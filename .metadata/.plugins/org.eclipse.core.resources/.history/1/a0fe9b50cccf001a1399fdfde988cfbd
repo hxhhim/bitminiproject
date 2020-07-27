@@ -1,0 +1,12 @@
+package mini_coffee;
+
+import java.util.Scanner;
+
+public class join {
+	Scanner sc = new Scanner(System.in);
+	Member member = new Member();
+	
+	System.out.println("회원가입메뉴입니다.");
+	System.out.println("이름: ");
+	
+}
