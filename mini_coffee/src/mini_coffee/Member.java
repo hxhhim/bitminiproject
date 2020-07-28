@@ -9,6 +9,7 @@ public class Member implements Serializable{
 	String id;
 	String password;
 	String myStore;
+	 int stamp;
 	
 	public  Member() {
 		
@@ -22,6 +23,7 @@ public class Member implements Serializable{
 		this.id = id;
 		this.password = password;
 		this.myStore = myStore;
+		stamp=30;
 		
 	}
 	public Member(String id, String password) {
@@ -32,6 +34,7 @@ public class Member implements Serializable{
 	@Override
 	public String toString() {
 		return "Member[id="+id+" , password="+password+" ,name="+name+" ,phoneNumber="+
-					phoneNumber+" , creditCard="+creditCard+", myStore="+myStore+"]";
+					phoneNumber+" , creditCard="+creditCard+", myStore="+myStore+
+							 ", stamp="+stamp+"]";
 	}
 }

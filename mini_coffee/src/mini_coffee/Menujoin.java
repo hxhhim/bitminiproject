@@ -9,33 +9,55 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menujoin {
-	ArrayList<Member> members = new ArrayList<>();
+	static ArrayList<Member> members = new ArrayList<>();
+	
 	Scanner sc = new Scanner(System.in);
 	Member temp = new Member();
 	
-	public void join() throws Exception {
-			
-	System.out.println("회원가입메뉴입니다.");
-	System.out.println("id: ");
-	String id = sc.nextLine();
-	System.out.println("password: ");
-	String password = sc.nextLine();
-	System.out.println("이름: ");
-	String name = sc.nextLine();
-	System.out.println("전화번호: ");
-	String phoneNumber = sc.nextLine();
-	System.out.println("결제정보(카드번호): ");
-	String creditCard = sc.nextLine();
-	System.out.println("나의매장(없으면 없음): ");
-	String myStroe = sc.nextLine();
-	
-	Member member =  new Member(name,phoneNumber,creditCard,id,password,myStroe);
-	
-	members.add(member);
-	savetoFile();
-	
+	public Menujoin() {
+		
 	}
-	 Member login() {
+	
+	public void join() throws Exception  {
+		load();
+		System.out.println("회원가입메뉴입니다.");
+		int result=1;
+		String id = null;
+		while(result!=0) {
+			System.out.println("id: ");
+			id = sc.nextLine();
+			for(int i=0;i<members.size();i++) {
+				if(members.get(i).id.equals(id)) {
+					result = 1;
+				}else {
+					result = 0;
+				}
+			}
+			if(result==1) {
+				System.out.println("이미 사용된 아이디 입니다.");
+			}else {
+				System.out.println("사용가능한 아이디입니다.");
+			}
+			
+	}
+		System.out.println("password: ");
+		String password = sc.nextLine();
+		System.out.println("이름: ");
+		String name = sc.nextLine();
+		System.out.println("전화번호: ");
+		String phoneNumber = sc.nextLine();
+		System.out.println("결제정보(카드번호): ");
+		String creditCard = sc.nextLine();
+		System.out.println("나의매장(없으면 없음): ");
+		String myStroe = sc.nextLine();
+	
+		Member member =  new Member(name,phoneNumber,creditCard,id,password,myStroe);
+		
+		members.add(member);
+		Filesave.savetoFile();
+	}
+	 Member login() throws Exception {
+		load();
 		System.out.println("--로그인메뉴--");
 		System.out.println("id를 입력: ");
 		String inputid = sc.nextLine();
@@ -55,7 +77,6 @@ public class Menujoin {
 					result = 1;
 			}
 			
-		
 		}
 		if(result ==0) {
 			System.out.println("로그인 되었습니다.");
@@ -65,7 +86,8 @@ public class Menujoin {
 		return temp;
 		
 	}
-	public Menujoin() throws Exception{
+	
+	public void load() throws Exception{
 		
 		File file = new File("member.dat");
 		if(!(file.exists()&&file.isFile())) {
@@ -86,24 +108,7 @@ public class Menujoin {
 	}
 	
 	
-	void savetoFile() throws Exception {
-		File file = new File("member.dat");
-		FileOutputStream out = null;
-		ObjectOutputStream out2= null;
-		try {
-			out = new FileOutputStream(file);
-			out2 = new ObjectOutputStream(out);
-			for(Member member : members) {
-			out2.writeObject(member);
-			}
-		}catch(Exception e) {
-			System.out.println("데이터 저장시 오류발생");
-			throw e;
-		}finally {
-			try {out2.close();}catch(Exception e) {}
-			try {out.close();}catch(Exception e) {}
-		}
-	}
+	
 	void printAll() {
 		for(Member member : members) {
 			System.out.println(member);
