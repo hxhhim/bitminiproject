@@ -6,8 +6,14 @@ public class Mainapp {
 		Menujoin mjoin = new Menujoin();
 		View vw = new View();
 		
-		vw.mainView();
 		
+		vw.mainView();
+		mjoin.printAll();
+		
+		mjoin.join();
+		
+		
+	
 		
 		
 		

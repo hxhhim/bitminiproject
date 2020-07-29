@@ -11,7 +11,7 @@ public class View  {
 	storemenuList slist = new storemenuList();
 	
 	public void mainView() throws Exception {
-		
+			mjoin.load();
 				
 		while (true) {
 			

@@ -2,9 +2,7 @@ package mini_coffee;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,32 +12,65 @@ public class Menujoin {
 	Scanner sc = new Scanner(System.in);
 	Member temp = new Member();
 	
-	public Menujoin() {
+	public Menujoin()  {
 		
 	}
 	
 	public void join() throws Exception  {
-		load();
-		System.out.println("회원가입메뉴입니다.");
+		
+//		System.out.println("회원가입메뉴입니다.");
+//		   System.out.println("id: ");
+//		   String id = sc.nextLine();
+//		   System.out.println("password: ");
+//		   String password = sc.nextLine();
+//		   System.out.println("이름: ");
+//		   String name = sc.nextLine();
+//		   System.out.println("전화번호: ");
+//		   String phoneNumber = sc.nextLine();
+//		   System.out.println("결제정보(카드번호): ");
+//		   String creditCard = sc.nextLine();
+//		   System.out.println("나의매장(없으면 없음): ");
+//		   String myStroe = sc.nextLine();
+//		   
+//		   Member member =  new Member(name,phoneNumber,creditCard,id,password,myStroe);
+//		   
+//		   members.add(member);
+//		   try {
+//		      Filesave.savetoFile();
+//		   } catch (Exception e) {
+//		      // TODO Auto-generated catch block
+//		      e.printStackTrace();
+//		   }
+		System.out.println("회원가입 메뉴입니다.");
+		
 		int result=1;
 		String id = null;
 		while(result!=0) {
 			System.out.println("id: ");
 			id = sc.nextLine();
-			for(int i=0;i<members.size();i++) {
-				if(members.get(i).id.equals(id)) {
+			System.out.println("id입력");
+			for(Member member :members) {
+	//			System.out.println("first");
+			
+				if(member.getId().equals(id)) {
+		//			System.out.println("inner1, result == 1");
 					result = 1;
+					break;
 				}else {
+		//			System.out.println("inner2, result == 0");
 					result = 0;
+					
 				}
 			}
 			if(result==1) {
+		//		System.out.println("result == 1");
 				System.out.println("이미 사용된 아이디 입니다.");
 			}else {
+				System.out.println("result == 0");
 				System.out.println("사용가능한 아이디입니다.");
 			}
 			
-	}
+		}
 		System.out.println("password: ");
 		String password = sc.nextLine();
 		System.out.println("이름: ");
@@ -54,10 +85,11 @@ public class Menujoin {
 		Member member =  new Member(name,phoneNumber,creditCard,id,password,myStroe);
 		
 		members.add(member);
+		
 		Filesave.savetoFile();
 	}
 	 Member login() throws Exception {
-		load();
+		
 		System.out.println("--로그인메뉴--");
 		System.out.println("id를 입력: ");
 		String inputid = sc.nextLine();
@@ -76,7 +108,6 @@ public class Menujoin {
 			 }else {
 					result = 1;
 			}
-			
 		}
 		if(result ==0) {
 			System.out.println("로그인 되었습니다.");
@@ -87,7 +118,7 @@ public class Menujoin {
 		
 	}
 	
-	public void load() throws Exception{
+	 void load() throws Exception{
 		
 		File file = new File("member.dat");
 		if(!(file.exists()&&file.isFile())) {
@@ -102,7 +133,7 @@ public class Menujoin {
 				members.add(member);
 			}
 			}catch(Exception e) {
-				
+				System.out.println("loaderror");
 			}
 			
 	}
